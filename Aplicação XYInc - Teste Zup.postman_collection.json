@@ -1,0 +1,192 @@
+{
+	"id": "203525a7-e6f5-5bdc-f23b-1dfd0b05aa7d",
+	"name": "Aplicação XYInc - Teste Zup",
+	"description": "",
+	"order": [
+		"e88af065-03e0-b502-5d1d-99097be6ddbe",
+		"da6f7a9a-76f4-b8b2-4823-0b8497fd728e",
+		"728b1951-a99c-b2ea-1282-1934ea0eda5c",
+		"fbe44677-0252-1b4e-90d3-3aa0fbd06d0b",
+		"c1ea622b-3cef-0c4d-9b6e-65e0832f8d64",
+		"0e1ea470-b740-f67e-dc1a-f9fe227ed958"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1565314114582,
+	"owner": "1971589",
+	"public": false,
+	"requests": [
+		{
+			"id": "0e1ea470-b740-f67e-dc1a-f9fe227ed958",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8080/ponto/9",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565316707962,
+			"name": "ponto por codigo",
+			"description": "",
+			"collectionId": "203525a7-e6f5-5bdc-f23b-1dfd0b05aa7d",
+			"responses": []
+		},
+		{
+			"id": "728b1951-a99c-b2ea-1282-1934ea0eda5c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/ponto/8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565316543447,
+			"name": "ponto",
+			"description": "",
+			"collectionId": "203525a7-e6f5-5bdc-f23b-1dfd0b05aa7d",
+			"responses": [],
+			"rawModeData": "{\n\t\"pontoid\":8,\n\t\"nome\":\"Shopping\",\n\t\"coordenadax\":26,\n\t\"coordenaday\":27\n}"
+		},
+		{
+			"id": "c1ea622b-3cef-0c4d-9b6e-65e0832f8d64",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8080/ponto/porproximidade?x=20&y=10&distancia=10",
+			"queryParams": [
+				{
+					"key": "x",
+					"value": "20",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "y",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "distancia",
+					"value": "10",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565316020504,
+			"name": "ponto por proximidade",
+			"description": "s",
+			"collectionId": "203525a7-e6f5-5bdc-f23b-1dfd0b05aa7d",
+			"responses": []
+		},
+		{
+			"id": "da6f7a9a-76f4-b8b2-4823-0b8497fd728e",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/ponto",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565316443225,
+			"name": "ponto",
+			"description": "",
+			"collectionId": "203525a7-e6f5-5bdc-f23b-1dfd0b05aa7d",
+			"responses": [],
+			"rawModeData": "{\n\t\"nome\":\"Shopping\",\n\t\"coordenadax\":26,\n\t\"coordenaday\":26\n}"
+		},
+		{
+			"id": "e88af065-03e0-b502-5d1d-99097be6ddbe",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8080/ponto",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565316023079,
+			"name": "ponto",
+			"description": "",
+			"collectionId": "203525a7-e6f5-5bdc-f23b-1dfd0b05aa7d",
+			"responses": []
+		},
+		{
+			"id": "fbe44677-0252-1b4e-90d3-3aa0fbd06d0b",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8080/ponto/8",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1565316609490,
+			"name": "ponto copy",
+			"description": "",
+			"collectionId": "203525a7-e6f5-5bdc-f23b-1dfd0b05aa7d",
+			"responses": []
+		}
+	]
+}
