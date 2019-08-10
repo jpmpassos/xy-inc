@@ -80,7 +80,7 @@ public class ProjetoXyIncExceptionHandler extends ResponseEntityExceptionHandler
 		String mensagemDesenvolvedor = ExceptionUtils.getRootCauseMessage(ex);
 
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 
 	}
 	
@@ -93,7 +93,7 @@ public class ProjetoXyIncExceptionHandler extends ResponseEntityExceptionHandler
 		String mensagemDesenvolvedor = ExceptionUtils.getRootCauseMessage(ex);
 
 		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 
 	}
 	
