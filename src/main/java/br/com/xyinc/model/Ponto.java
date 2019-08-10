@@ -105,4 +105,18 @@ public class Ponto implements Serializable {
 		return true;
 	}
 
+	public Ponto(Integer pontoid, @NotNull String nome,
+			@NotNull @Range(min = 0, message = "A coordenada x deve ser um valor inteiro") Integer coordenadax,
+			@NotNull @Range(min = 0, message = "A coordenada y deve ser um valor inteiro") Integer coordenaday) {
+		super();
+		this.pontoid = pontoid;
+		this.nome = nome;
+		this.coordenadax = coordenadax;
+		this.coordenaday = coordenaday;
+	}
+
+	public Ponto() {
+		super();
+	}	
+	
 }

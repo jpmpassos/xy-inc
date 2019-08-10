@@ -24,15 +24,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.xyinc.event.RecursoCriadoEvent;
 import br.com.xyinc.model.Ponto;
-import br.com.xyinc.repository.PontoRepository;
 import br.com.xyinc.service.PontoService;
 
 @RestController
 @RequestMapping("/ponto")
 public class PontoResource {
 
-	@Autowired
-	private PontoRepository pontoRepository;
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	@Autowired
@@ -41,16 +38,16 @@ public class PontoResource {
 	@CrossOrigin
 	@GetMapping
 	public List<Ponto> listar() {
-		return pontoRepository.findAll();
+		return pontoService.listarTodos();
 	}
 
 	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Ponto> cria(@Valid @RequestBody Ponto ponto, HttpServletResponse response) {
-		Ponto pontoSalva = pontoRepository.save(ponto);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, pontoSalva.getPontoid()));
+		Ponto pontoSalvo = pontoService.salvar(ponto);
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, pontoSalvo.getPontoid()));
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(pontoSalva);
+		return ResponseEntity.status(HttpStatus.CREATED).body(pontoSalvo);
 	}
 
 	@CrossOrigin
@@ -63,7 +60,7 @@ public class PontoResource {
 	@CrossOrigin
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Ponto> buscarPeloCodigo(@PathVariable Integer codigo, HttpServletResponse response) {
-		Ponto ponto = pontoRepository.findById(codigo).orElse(null);
+		Ponto ponto = pontoService.buscarProdutoPeloCodigo(codigo);
 
 		if (ponto == null) {
 			return ResponseEntity.notFound().build();
@@ -76,20 +73,20 @@ public class PontoResource {
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Integer codigo) {
-		pontoRepository.deleteById(codigo);
+		pontoService.deletar(codigo);
 	}
 	
 	@CrossOrigin
 	@Transactional
 	public List<Ponto> listarTodos() {	
-		return pontoRepository.findAll();
+		return pontoService.listarTodos();
 	}
 	
 	@CrossOrigin
 	@GetMapping("porproximidade")
 	@Transactional
-	public List<Ponto> listarPaginado(Integer x, Integer y, BigDecimal distancia) {	
-		return pontoRepository.listarPorProximidade(x, y, distancia);
+	public List<Ponto> listarPorProximidade(Integer x, Integer y, BigDecimal distancia) {	
+		return pontoService.listarPorProximidadeBanco(x, y, distancia);
 	}
 
 }
