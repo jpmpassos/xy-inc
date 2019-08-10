@@ -25,7 +25,7 @@ public class PontoService {
 
 	public Ponto atualizar(Integer codigo, Ponto ponto) {
 		Ponto pontoBanco = buscarPontoPeloCodigo(codigo);
-		BeanUtils.copyProperties(ponto, pontoBanco, "codigo");
+		BeanUtils.copyProperties(ponto, pontoBanco, "pontoid");
 		return pontoRepository.save(pontoBanco);
 	}
 
