@@ -8,7 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 @Table(name = "ponto")
@@ -19,35 +21,47 @@ public class Ponto implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ponto_pontoid_seq")
 	private Integer pontoid;
+	@NotNull
 	private String nome;
+	@NotNull
+	@Range(min = 0, message = "A coordenada x deve ser um valor inteiro")
 	private Integer coordenadax;
+	@NotNull
+	@Range(min = 0, message = "A coordenada y deve ser um valor inteiro")
 	private Integer coordenaday;
-	
-	
+
 	public Integer getPontoid() {
 		return pontoid;
 	}
+
 	public void setPontoid(Integer pontoid) {
 		this.pontoid = pontoid;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public Integer getCoordenadax() {
 		return coordenadax;
 	}
+
 	public void setCoordenadax(Integer coordenadax) {
 		this.coordenadax = coordenadax;
 	}
+
 	public Integer getCoordenaday() {
 		return coordenaday;
 	}
+
 	public void setCoordenaday(Integer coordenaday) {
 		this.coordenaday = coordenaday;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -58,6 +72,7 @@ public class Ponto implements Serializable {
 		result = prime * result + ((pontoid == null) ? 0 : pontoid.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -90,5 +105,4 @@ public class Ponto implements Serializable {
 		return true;
 	}
 
-	
 }

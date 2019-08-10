@@ -20,11 +20,6 @@ public class PontoService {
 		return pontoRepository.save(pontoBanco);
 	}
 
-	public void atualizarPropriedadeAtivo(Integer codigo, Boolean ativo) {
-		Ponto pontoBanco = buscarProdutoPeloCodigo(codigo);
-		pontoRepository.save(pontoBanco);
-	}
-
 	private Ponto buscarProdutoPeloCodigo(Integer codigo) {
 		Ponto pontoBanco = pontoRepository.findById(codigo).orElse(null);
 		if (pontoBanco == null) {
