@@ -60,7 +60,7 @@ public class PontoResource {
 	@CrossOrigin
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Ponto> buscarPeloCodigo(@PathVariable Integer codigo, HttpServletResponse response) {
-		Ponto ponto = pontoService.buscarProdutoPeloCodigo(codigo);
+		Ponto ponto = pontoService.buscarPontoPeloCodigo(codigo);
 
 		if (ponto == null) {
 			return ResponseEntity.notFound().build();

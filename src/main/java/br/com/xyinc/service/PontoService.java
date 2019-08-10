@@ -24,12 +24,12 @@ public class PontoService {
 	}
 
 	public Ponto atualizar(Integer codigo, Ponto ponto) {
-		Ponto pontoBanco = buscarProdutoPeloCodigo(codigo);
+		Ponto pontoBanco = buscarPontoPeloCodigo(codigo);
 		BeanUtils.copyProperties(ponto, pontoBanco, "codigo");
 		return pontoRepository.save(pontoBanco);
 	}
 
-	public Ponto buscarProdutoPeloCodigo(Integer codigo) {
+	public Ponto buscarPontoPeloCodigo(Integer codigo) {
 		Ponto pontoBanco = pontoRepository.findById(codigo).orElse(null);
 		if (pontoBanco == null) {
 			throw new EmptyResultDataAccessException(1);
