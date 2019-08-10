@@ -1,37 +1,49 @@
-## Welcome to GitHub Pages
+## Projeto XyInc
 
-You can use the [editor on GitHub](https://github.com/jpmpassos/xy-inc/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Para poder rodar este projeto é necessário ter o Postgresql instalado e criar um banco de dados com o nome db_xy_inc.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+```markdown
+CREATE DATABASE db_xy_inc
+  WITH ENCODING = 'UTF8';
+```
+
+Depois deve configurar o arquivo `application.properties` com as informações de usuário senha e host do banco de dados.
+
+```markdown
+spring.datasource.url=jdbc:postgresql://localhost:5432/db_xy_inc
+spring.datasource.username=postgres
+spring.datasource.password=admin123@
+```
 
 ### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Foram criados 6 serviços para manipulação e listagem dos pontos.
+
+Abaixo segue um exemplo do objeto json que representa a classe Ponto.
 
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+  {
+        "pontoid": 2,
+        "nome": "Posto",
+        "coordenadax": 31,
+        "coordenaday": 18
+  }
 ```
+Através do endpoint http://localhost:8080/ponto é possível consumir diversos serviços alternando apenas o verbo http.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Para gravar um novo ponto, deve realizar uma chamada POST para o endpoint acima, passando no Body o objeto json Ponto sem a propriedade pontoid.
 
-### Jekyll Themes
+Para recuperar todos os registros basta realizar uma chamada GET para o endpoint acima sem nenhum parâmetro.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/jpmpassos/xy-inc/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Para listar os pontos por proximidade, é necessário realizar uma chamada do tipo GET para o endpoint com os respectivos parâmetros:
+http://localhost:8080/ponto/porproximidade?x=20&y=10&distancia=10
 
-### Support or Contact
+Foi adicionado o arquivo `Aplicação XYInc - Teste Zup.postman_collection.json` que pode ser importado pelo seu Postman, onde terá um exemplo de chamada de todos os serviços criado.
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### Observações
+
+Ao analisar o código, notará que foi desenvolvido uma função `caucularDistanciaDeCoodenadas` que calcula a distancia entre duas coordenadas, que é usada na função `listarPorProximidadeJava` dentro da classe `PontoSevice`. Já a função `listarPorProximidadeJava` recupera uma lista de todos os pontos existente no banco de dados e realiza um filtro através da API stream, onde separa apenas os pontos com distancia inferior distância e ponto passados como parâmetro.
+
+Mas essa função não é utilizada na chamada do serviço `ponto/porproximidade`, por achar que o filtro sendo realizado no próprio select terá uma melhor performance para uma grande quantidade de informações.
+
+Sendo assim a função utilizado é a `listarPorProximidadeBanco` que realiza uma busca no banco de dados pelos registros tenha distância inferior ou igual a distância e ponto passados como parâmetro.
